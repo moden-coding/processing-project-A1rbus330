@@ -16,6 +16,9 @@ public class App extends PApplet {
     int scene = 1;
     float foodSpeedX = 3;
     float foodSpeedY = 3;
+    int highScore = 0;
+    PImage image;
+    PImage man;
 
     public void setup() {
         background(0, 0, 80);
@@ -23,12 +26,12 @@ public class App extends PApplet {
 
     public void settings() {
         size(600, 600);
-
+        image = loadImage("Owl.png");
+        man = loadImage("dude.jpeg");
     }
 
     public void draw() {
         background(0, 0, 80);
-        rect(rectX, rectY, 50, 50);
         rect(foodX, foodY, 50, 50);
         if (left == true) {
             rectX -= speed;
@@ -42,6 +45,8 @@ public class App extends PApplet {
         if (up == true) {
             rectY -= speed;
         }
+        image(image, rectX, rectY);
+        image(man, foodX, foodY);
         score();
         gameOver();
         if (gameOver()) { // corrected with chatgpt
@@ -89,6 +94,10 @@ public class App extends PApplet {
             down = false;
             right = false;
             left = true;
+        }
+        if (key == 'r'){
+            scene = 1;
+            score = 0;
         }
     }
 
