@@ -7,6 +7,7 @@ public class App extends PApplet {
         PApplet.main("App");
     }
     SoundFile music;
+    SoundFile ding;
     int rectX = 100; // pos for rectangle
     int rectY = 100;
     double speed = 5; // how fast the rect is going
@@ -28,8 +29,8 @@ public class App extends PApplet {
     public void setup() { //makes the background
         background(0, 0, 80);
         music = new SoundFile(this, "bgm.mp3"); //copied and pasted from nathan's code
+        ding = new SoundFile(this, "ding.mp3");
         music.play();
-
     }
 
     public void settings() { //puts in the images that I need
@@ -129,9 +130,10 @@ public class App extends PApplet {
 
     public void score() { // keeps track of the score and adds speed
         if (dist(rectX, rectY, foodX, foodY) < (50 / 2 + 50 / 2)) {
+            ding.play();
             score = score + 1;
             System.out.println(score);
-            background(0, 0, 80);
+            background(background);
             foodX = random(550);
             foodY = random(550);
             extra += .1;
